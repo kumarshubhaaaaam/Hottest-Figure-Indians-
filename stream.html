@@ -31,7 +31,7 @@
       pointer-events: none;
     }
 
-    .card {
+  .card {
       background-color: #1c1c1c;
       padding: 1rem;
       border-radius: 0.75rem;
@@ -183,8 +183,10 @@
 </head>
 <body>
 <canvas id="particles-bg"></canvas>
-<br><br><br><br>
-
+<br>
+<br>
+<br>
+<br>
 <div class="button-wrapper">
   <a href="index.html" class="back-home-btn">Back</a>
 </div>
@@ -205,28 +207,28 @@
 
 <script>
   const urlParams = new URLSearchParams(window.location.search);
-  const streamUrl = decodeURIComponent(urlParams.get('url') || '');
-  const title = decodeURIComponent(urlParams.get('title') || 'Streaming...');
+  const streamUrl = urlParams.get('url');
+  const title = urlParams.get('title') || "Streaming...";
 
   function isVerified() {
-    const verifiedCookie = document.cookie.includes("verified_access=true");
-    const verifiedUntil = parseInt(localStorage.getItem('verifiedUntil') || '0', 10);
-    return verifiedCookie && verifiedUntil > Date.now();
-  }
+  const verifiedCookie = document.cookie.includes("verified_access=true");
+  const verifiedUntil = parseInt(localStorage.getItem('verifiedUntil') || '0', 10);
+  return verifiedCookie && verifiedUntil > Date.now();
+}
 
-  const streamCard = document.getElementById("streamCard");
-  const verificationLock = document.getElementById("verificationLock");
+const streamCard = document.getElementById("streamCard");
+const verificationLock = document.getElementById("verificationLock");
 
-  if (isVerified()) {
-    showStream();
-  } else {
-    verificationLock.style.display = "block";
-  }
+if (isVerified()) {
+  showStream();
+} else {
+  verificationLock.style.display = "block";
+}
 
   function showStream() {
     verificationLock.style.display = "none";
     streamCard.style.display = "block";
-    document.getElementById("videoTitle").innerText = title;
+    document.getElementById("videoTitle").innerText = decodeURIComponent(title);
 
     if (!streamUrl) {
       document.getElementById('loader').innerText = "No video URL provided.";
@@ -259,7 +261,7 @@
       .catch(() => alert("Failed to generate ad link."));
   }
 
-  // Particle background animation
+  // Replaced particle animation with white particles (verify-style)
   const canvas = document.getElementById('particles-bg');
   const ctx = canvas.getContext('2d');
   let particles = [];
