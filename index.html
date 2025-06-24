@@ -12,202 +12,207 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
-    }body {
-  background-color: #0a0a0a;
-  color: white;
-  overflow-x: hidden;
-  min-height: 100vh;
-}
+    }
+    body {
+      background-color: #0a0a0a;
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
 
-#particles-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  pointer-events: none;
-}
+    #particles-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
 
-.video-section {
-  text-align: center;
-  margin-top: 2rem;
-}
+    .video-section {
+      text-align: center;
+      margin-top: 2rem;
+    }
 
-.section-heading {
-  text-align: center;
-  font-size: 2.5rem;
-  color: white;
-  font-weight: bold;
-  position: relative;
-  display: inline-block;
-  margin: 2rem auto 1rem;
-}
+    .section-heading {
+      text-align: center;
+      font-size: 2.5rem;
+      color: white;
+      font-weight: bold;
+      position: relative;
+      display: inline-block;
+      margin: 2rem auto 1rem;
+    }
 
-.section-heading::after {
-  content: "";
-  display: block;
-  height: 5px;
-  width: 60%;
-  margin: 0.5rem auto 0;
-  background-color: #00d2fc;
-  border-radius: 10px;
-}
+    .section-heading::after {
+      content: "";
+      display: block;
+      height: 5px;
+      width: 60%;
+      margin: 0.5rem auto 0;
+      background-color: #00d2fc;
+      border-radius: 10px;
+    }
 
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  padding: 0 1rem;
-}
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0 1rem;
+    }
 
-.card {
-  background-color: #1c1c1c;
-  padding: 1rem;
-  border-radius: 0.75rem;
-  text-align: center;
-  border: 2px solid transparent;
-  max-width: 320px;
-  flex: 1 1 300px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-}
+    .card {
+      background-color: #1c1c1c;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      text-align: center;
+      border: 2px solid transparent;
+      max-width: 320px;
+      flex: 1 1 300px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px #00d2fc;
-  border: 2px solid #00d2fc;
-}
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00d2fc;
+      border: 2px solid #00d2fc;
+    }
 
-.card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-  margin-bottom: 1rem;
-  pointer-events: none;
-  background-color: #000;
-}
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      pointer-events: none;
+      background-color: #000;
+    }
 
-.card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.8rem;
-}
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
 
-.card button {
-  padding: 0.8rem;
-  width: 100%;
-  font-size: 1rem;
-  font-weight: bold;
-  background: linear-gradient(to right, #00d2fc, #00d2fc);
-  color: black;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
+    .card button {
+      padding: 0.8rem;
+      width: 100%;
+      font-size: 1rem;
+      font-weight: bold;
+      background: linear-gradient(to right, #00d2fc, #00d2fc);
+      color: black;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
 
-.card button:hover {
-  background: linear-gradient(to right, #00d2fc, #00d2fc);
-}
+    .card button:hover {
+      background: linear-gradient(to right, #00d2fc, #00d2fc);
+    }
 
-.pagination {
-  text-align: center;
-  margin: 2rem auto;
-}
+    .pagination {
+      text-align: center;
+      margin: 2rem auto;
+    }
 
-.pagination button {
-  background: #333;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: 1px solid #555;
-  margin: 0 0.2rem;
-  cursor: pointer;
-  border-radius: 5px;
-}
+    .pagination button {
+      background: #333;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: 1px solid #555;
+      margin: 0 0.2rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
 
-.pagination button.active {
-  background: #00d2fc;
-  color: black;
-  font-weight: bold;
-}
+    .pagination button.active {
+      background: #00d2fc;
+      color: black;
+      font-weight: bold;
+    }
 
-.skeleton {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border-radius: 0.75rem;
-  padding: 1rem;
-  text-align: center;
-  animation: pulse 1.5s infinite ease-in-out;
-  max-width: 320px;
-  flex: 1 1 300px;
-}
+    .skeleton {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      text-align: center;
+      animation: pulse 1.5s infinite ease-in-out;
+      max-width: 320px;
+      flex: 1 1 300px;
+    }
 
-.skeleton .img {
-  width: 100%;
-  height: 160px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 0.5rem;
-  margin-bottom: 1rem;
-}
+    .skeleton .img {
+      width: 100%;
+      height: 160px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
 
-.skeleton .title {
-  height: 20px;
-  width: 80%;
-  background: rgba(255,255,255,0.1);
-  margin: 0 auto 1rem;
-  border-radius: 0.4rem;
-}
+    .skeleton .title {
+      height: 20px;
+      width: 80%;
+      background: rgba(255,255,255,0.1);
+      margin: 0 auto 1rem;
+      border-radius: 0.4rem;
+    }
 
-.skeleton .button {
-  height: 45px;
-  width: 100%;
-  background: rgba(255,255,255,0.1);
-  border-radius: 0.5rem;
-}
+    .skeleton .button {
+      height: 45px;
+      width: 100%;
+      background: rgba(255,255,255,0.1);
+      border-radius: 0.5rem;
+    }
 
-.floating-contact {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: linear-gradient(45deg, #00d2fc, #007bff);
-  color: #fff;
-  padding: 0.75rem 1.2rem;
-  font-weight: bold;
-  font-size: 1rem;
-  border-radius: 50px;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 210, 252, 0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  z-index: 999;
-}
+    .floating-contact {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(45deg, #00d2fc, #007bff);
+      color: #fff;
+      padding: 0.75rem 1.2rem;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 210, 252, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 999;
+    }
 
-.floating-contact:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 16px rgba(0, 210, 252, 0.8);
-  background: linear-gradient(45deg, #007bff, #00d2fc);
-}
+    .floating-contact:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0, 210, 252, 0.8);
+      background: linear-gradient(45deg, #007bff, #00d2fc);
+    }
 
-@keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
-}
-
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
   </style>
 </head>
 <body>
   <canvas id="particles-bg"></canvas>
-  <a href="mailto:contacttodelete@gmail.com" class="floating-contact">✉️ Contact Us</a>  <div class="video-section">
+  <a href="mailto:contacttodelete@gmail.com" class="floating-contact">✉️ Contact Us</a>
+  <div class="video-section">
     <h2 class="section-heading">📹 All Videos</h2><br><br>
-  </div>  <section class="grid" id="postGrid"></section>
-  <div class="pagination" id="pagination"></div>  <footer style="margin: 3rem auto; max-width: 90%; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 1rem; padding: 2rem; text-align: center; color: #e0e0e0; font-size: 1rem; box-shadow: 0 0 20px rgba(0,210,252,0.2);">
+  </div>
+  <section class="grid" id="postGrid"></section>
+  <div class="pagination" id="pagination"></div>
+  <footer style="margin: 3rem auto; max-width: 90%; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 1rem; padding: 2rem; text-align: center; color: #e0e0e0; font-size: 1rem; box-shadow: 0 0 20px rgba(0,210,252,0.2);">
     <p style="margin: 0;">
       ⚠️ <strong>Disclaimer:</strong><br>
       All videos featured on this site are sourced from external platforms 🌐. We do not host or own any of the content. If you believe your rights have been infringed, or wish to request removal, please contact us 📩 at<br>
       <a href="mailto:contacttodelete@gmail.com" style="color: #00d2fc; text-decoration: underline; font-weight: bold;">contacttodelete@gmail.com</a>
     </p>
-  </footer>  <script>
+  </footer>
+
+  <script>
     const sheetID = '1v5AmhE3zIIq9M9KQlecBwF2n-TmDwLoQOyxXa1lOQkU';
     const sheetName = 'Sheet1';
     const query = encodeURIComponent('SELECT A, B, C');
@@ -220,12 +225,13 @@
       return v ? v[2] : null;
     }
 
-    function shuffleArray(array) {
-      return array
-        .map(value => ({ value, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(({ value }) => value);
-    }
+    // Shuffle function is disabled
+    // function shuffleArray(array) {
+    //   return array
+    //     .map(value => ({ value, sort: Math.random() }))
+    //     .sort((a, b) => a.sort - b.sort)
+    //     .map(({ value }) => value);
+    // }
 
     const skeletonKey = 'skeletonLastShown';
     const now = Date.now();
@@ -249,17 +255,20 @@
           watchUrl: row.c[2]?.v || '#'
         }));
 
-        const cached = localStorage.getItem('shuffledPosts');
-        const cachedTime = parseInt(localStorage.getItem('shuffledAt') || 0);
-        const oneHour = 3600000;
+        // Shuffling is disabled here
+        // const cached = localStorage.getItem('shuffledPosts');
+        // const cachedTime = parseInt(localStorage.getItem('shuffledAt') || 0);
+        // const oneHour = 3600000;
 
-        if (!cached || now - cachedTime > oneHour) {
-          allPosts = shuffleArray(rawPosts);
-          localStorage.setItem('shuffledPosts', JSON.stringify(allPosts));
-          localStorage.setItem('shuffledAt', now.toString());
-        } else {
-          allPosts = JSON.parse(cached);
-        }
+        // if (!cached || now - cachedTime > oneHour) {
+        //   allPosts = shuffleArray(rawPosts);
+        //   localStorage.setItem('shuffledPosts', JSON.stringify(allPosts));
+        //   localStorage.setItem('shuffledAt', now.toString());
+        // } else {
+        //   allPosts = JSON.parse(cached);
+        // }
+
+        allPosts = rawPosts;
 
         if (showSkeleton) {
           setTimeout(() => {
@@ -392,5 +401,6 @@
 
     initParticles();
     animateParticles();
-  </script></body>
+  </script>
+</body>
 </html>
