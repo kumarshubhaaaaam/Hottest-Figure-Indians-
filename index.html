@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="theme-color" content="#1c1c1c">
-  <title>Hottest Figure 🥵</title>
+  <title>Hottest Figure Indian</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
@@ -13,6 +13,7 @@
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
     }
+
     body {
       background-color: #0a0a0a;
       color: white;
@@ -194,16 +195,30 @@
       50% { opacity: 0.5; }
       100% { opacity: 1; }
     }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
   </style>
 </head>
 <body>
   <canvas id="particles-bg"></canvas>
   <a href="mailto:contacttodelete@gmail.com" class="floating-contact">✉️ Contact Us</a>
+
   <div class="video-section">
-    <h2 class="section-heading">📹 All Videos</h2><br><br>
+    <h2 class="section-heading">All Videos</h2><br><br>
   </div>
+
   <section class="grid" id="postGrid"></section>
   <div class="pagination" id="pagination"></div>
+
   <footer style="margin: 3rem auto; max-width: 90%; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 1rem; padding: 2rem; text-align: center; color: #e0e0e0; font-size: 1rem; box-shadow: 0 0 20px rgba(0,210,252,0.2);">
     <p style="margin: 0;">
       ⚠️ <strong>Disclaimer:</strong><br>
@@ -211,196 +226,168 @@
       <a href="mailto:contacttodelete@gmail.com" style="color: #00d2fc; text-decoration: underline; font-weight: bold;">contacttodelete@gmail.com</a>
     </p>
   </footer>
-
   <script>
-    const sheetID = '1v5AmhE3zIIq9M9KQlecBwF2n-TmDwLoQOyxXa1lOQkU';
-    const sheetName = 'Sheet1';
-    const query = encodeURIComponent('SELECT A, B, C');
-    const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?sheet=${sheetName}&tq=${query}`;
-    const postsPerPage = 10;
-    let allPosts = [];
+  const sheetID = '1e696h2ITLYLwzijRRvmH3KH9cW_AKVhD7jsBQ39zAdU';
+  const sheetName = 'Sheet1';
+  const query = encodeURIComponent('SELECT A, B, C');
+  const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?sheet=${sheetName}&tq=${query}`;
+  const postsPerPage = 10;
+  let allPosts = [];
 
-    function getCookie(name) {
-      const v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-      return v ? v[2] : null;
+  const emojiList = ['🔥', '🎬', '🌟', '🚀', '✨', '🎥', '💥', '🎞️', '🎉', '📽️'];
+
+  function getPageFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const page = parseInt(params.get('page'));
+    return isNaN(page) || page < 1 ? 1 : page;
+  }
+
+  function updateURLPageParam(page) {
+    const params = new URLSearchParams(window.location.search);
+    params.set('page', page);
+    history.replaceState({}, '', `${location.pathname}?${params}`);
+  }
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
+  }
 
-    // Shuffle function is disabled
-    // function shuffleArray(array) {
-    //   return array
-    //     .map(value => ({ value, sort: Math.random() }))
-    //     .sort((a, b) => a.sort - b.sort)
-    //     .map(({ value }) => value);
-    // }
+  const now = Date.now();
+  const lastShuffle = localStorage.getItem('shuffleLastTime');
 
-    const skeletonKey = 'skeletonLastShown';
-    const now = Date.now();
-    const lastShown = localStorage.getItem(skeletonKey);
-    const showSkeleton = !lastShown || now - parseInt(lastShown) > 86400000;
+  fetch(url)
+    .then(res => res.text())
+    .then(rep => {
+      const json = JSON.parse(rep.substring(47).slice(0, -2));
+      const data = json.table.rows;
+      allPosts = data.map((row, index) => ({
+        id: `post-${index}`,
+        title: row.c[0]?.v || 'Untitled',
+        imageUrl: row.c[1]?.v || '',
+        watchUrl: row.c[2]?.v || '#'
+      }));
 
-    if (showSkeleton) {
-      showSkeletons();
-      localStorage.setItem(skeletonKey, now.toString());
-    }
-
-    fetch(url)
-      .then(res => res.text())
-      .then(rep => {
-        const json = JSON.parse(rep.substring(47).slice(0, -2));
-        const data = json.table.rows;
-        const rawPosts = data.map((row, index) => ({
-          id: `post-${index}`,
-          title: row.c[0]?.v || 'Untitled',
-          imageUrl: row.c[1]?.v || '',
-          watchUrl: row.c[2]?.v || '#'
-        }));
-
-        // Shuffling is disabled here
-        // const cached = localStorage.getItem('shuffledPosts');
-        // const cachedTime = parseInt(localStorage.getItem('shuffledAt') || 0);
-        // const oneHour = 3600000;
-
-        // if (!cached || now - cachedTime > oneHour) {
-        //   allPosts = shuffleArray(rawPosts);
-        //   localStorage.setItem('shuffledPosts', JSON.stringify(allPosts));
-        //   localStorage.setItem('shuffledAt', now.toString());
-        // } else {
-        //   allPosts = JSON.parse(cached);
-        // }
-
-        allPosts = rawPosts;
-
-        if (showSkeleton) {
-          setTimeout(() => {
-            removeSkeletons();
-            renderPagination();
-            renderPosts(1);
-          }, 3000);
-        } else {
-          removeSkeletons();
-          renderPagination();
-          renderPosts(1);
-        }
-      });
-
-    function showSkeletons() {
-      const grid = document.getElementById('postGrid');
-      for (let i = 0; i < postsPerPage; i++) {
-        const skeleton = document.createElement('div');
-        skeleton.className = 'skeleton';
-        skeleton.innerHTML = `
-          <div class="img"></div>
-          <div class="title"></div>
-          <div class="button"></div>
-        `;
-        grid.appendChild(skeleton);
+      if (!lastShuffle || now - parseInt(lastShuffle) > 3600000) {
+        shuffleArray(allPosts);
+        localStorage.setItem('shuffleLastTime', now.toString());
       }
-    }
 
-    function removeSkeletons() {
-      document.getElementById('postGrid').innerHTML = '';
-    }
+      const page = getPageFromURL();
+      renderPagination(page);
+      renderPosts(page);
+    });
 
-    function renderPosts(page) {
-      const grid = document.getElementById('postGrid');
-      grid.innerHTML = '';
-      const start = (page - 1) * postsPerPage;
-      const end = start + postsPerPage;
-      const pagePosts = allPosts.slice(start, end);
+  function renderPosts(page) {
+    const grid = document.getElementById('postGrid');
+    grid.innerHTML = '';
+    const start = (page - 1) * postsPerPage;
+    const end = start + postsPerPage;
+    const pagePosts = allPosts.slice(start, end);
 
-      pagePosts.forEach(post => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <img src="${post.imageUrl}" alt="${post.title}" oncontextmenu="return false;" draggable="false" loading="lazy" decoding="async"/>
-          <h3>${post.title}</h3>
-          <button onclick="handleWatchClick('${encodeURIComponent(post.watchUrl)}', '${encodeURIComponent(post.title)}')">Watch</button>
-        `;
-        grid.appendChild(card);
-      });
-    }
+    pagePosts.forEach((post, index) => {
+      const emoji = emojiList[index % emojiList.length];
+      const card = document.createElement('div');
+      card.className = 'card fade-in';
+      card.style.animationDelay = `${index * 100}ms`;
+      card.setAttribute('data-post-id', post.id);
+      card.innerHTML = `
+        <img src="${post.imageUrl}" alt="${post.title}" oncontextmenu="return false;" draggable="false" loading="lazy" decoding="async"/>
+        <h3>${emoji} ${post.title}</h3>
+        <button class="watch-btn" data-url="${post.watchUrl}">▶️ Watch</button>
+      `;
+      grid.appendChild(card);
+    });
 
-    function handleWatchClick(encodedUrl, encodedTitle) {
-      const verified = getCookie('verified_access');
-      if (verified === 'true') {
-        window.open(`stream.html?url=${encodedUrl}&title=${encodedTitle}`, '_blank');
-      } else {
-        window.location.href = `verify.html?url=${encodedUrl}&title=${encodedTitle}`;
-      }
-    }
-
-    function renderPagination() {
-      const pagination = document.getElementById('pagination');
-      const totalPages = Math.ceil(allPosts.length / postsPerPage);
-      pagination.innerHTML = '';
-
-      for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement('button');
-        btn.textContent = i;
+    // Attach click listeners safely
+    setTimeout(() => {
+      document.querySelectorAll('.watch-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          renderPosts(i);
-          document.querySelectorAll('.pagination button').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
+          const url = btn.getAttribute('data-url');
+          window.open(url, '_blank');
         });
-        if (i === 1) btn.classList.add('active');
-        pagination.appendChild(btn);
-      }
-    }
-
-    const canvas = document.getElementById('particles-bg');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    window.addEventListener('resize', resize);
-    resize();
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.radius = Math.random() * 2;
-        this.speedX = (Math.random() - 0.5) * 0.7;
-        this.speedY = (Math.random() - 0.5) * 0.7;
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'white';
-        ctx.fill();
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-      }
-    }
-
-    function initParticles() {
-      particles = [];
-      for (let i = 0; i < 150; i++) {
-        particles.push(new Particle());
-      }
-    }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
       });
-      requestAnimationFrame(animateParticles);
+    }, 100);
+  }
+
+  function renderPagination(currentPage) {
+    const pagination = document.getElementById('pagination');
+    const totalPages = Math.ceil(allPosts.length / postsPerPage);
+    pagination.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement('button');
+      btn.textContent = `📄 ${i}`;
+      if (i === currentPage) btn.classList.add('active');
+
+      btn.addEventListener('click', () => {
+        renderPosts(i);
+        updateURLPageParam(i);
+        document.querySelectorAll('.pagination button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+
+      pagination.appendChild(btn);
+    }
+  }
+
+  // Particle background
+  const canvas = document.getElementById('particles-bg');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.radius = Math.random() * 2;
+      this.speedX = (Math.random() - 0.5) * 0.7;
+      this.speedY = (Math.random() - 0.5) * 0.7;
     }
 
-    initParticles();
-    animateParticles();
-  </script>
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'white';
+      ctx.fill();
+    }
+
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+    }
+  }
+
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < 150; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+
+  initParticles();
+  animateParticles();
+</script>
 </body>
 </html>
